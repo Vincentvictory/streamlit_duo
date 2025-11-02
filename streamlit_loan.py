@@ -7,7 +7,6 @@ st.set_page_config(page_title="DUO & Hypotheek Dashboard", layout="wide")
 st.title("💡 DUO & Hypotheek")
 
 # --- Gegevens ---
-duo_schuld_start = 48000
 rente_duo = 2.57 / 100  # per jaar
 rente_hypotheek = 3.52 / 100  # per jaar
 min_aflossing_duo = 50  # verplicht per maand
@@ -19,6 +18,7 @@ max_hypotheek = np.array([144.782, 147.669, 152.490, 157.310, 162.109, 166.929, 
 
 # --- Invoer ---
 st.sidebar.header("Invoer")
+duo_schuld_start = st.sidebar.number_input("DUO schuld (€)", value=48000, step=1000)
 spaarsaldo = st.sidebar.number_input("Beschikbaar spaarsaldo (€)", value=38000, step=1000)
 extra_aflossing_duo = st.sidebar.slider(
     "Extra DUO aflossen nu (€)", 
@@ -30,7 +30,6 @@ beschikbaar_spaargeld_na_aflossen = spaarsaldo - extra_aflossing_duo
 st.sidebar.header("Info")
 st.sidebar.markdown("Verkrijgbare hypotheek is berekend vanuit de [Rabobank rekentool](https://www.rabobank.nl/particulieren/hypotheek/hypotheek-berekenen?utm_source=Google&utm_medium=CPC&utm_id=google_ads_262289088&utm_cid=262289088&utm_agid=16946959848&utm_kw=rabobank%20hypotheek%20berekenen&utm_mt=e&utm_campaign=MPD2522135029_semibrand--berekenen&gad_source=1&gad_campaignid=262289088&gbraid=0AAAAADsaNlfRx6MXNu9CmYUQRDD5Rua-f&gclid=Cj0KCQjwgpzIBhCOARIsABZm7vHJl7WPQQFlz2vfjrMf4PJ0d1ZlCd7katt6bRMtxn0dFkDYtfnnRnMaAhoHEALw_wcB)")
 st.sidebar.markdown("Minimaal maandbedrag DUO dat betaald moet worden kan met [Rekenhulp Terugbetalen](https://duo.nl/particulier/rekenhulp-studiefinanciering.jsp#/nl/terugbetalen) van DUO berekend worden. Voor een inkomen van jou en je partner van beide 40.000eu is dit 'slechts' 147eu per maand")
-st.header("DUO maandlast per scenario")
 col1, col2 = st.columns(2)
 with col1:
     maandlast_duo_s1 = st.number_input(
@@ -136,7 +135,6 @@ def bereken_verloop_schulden(months, startschuld_duo, max_hypotheek, maand_hypot
 
 
 # --- Scenario 1: DUO aflossen direct ---
-duo_na_aflossing = duo_schuld_start - spaarsaldo
 duo_verloop_s1, hypotheek_verloop_s1, totale_schuld_s1 = bereken_verloop_schulden(
     months, duo_na_aflossing, max_hypotheek_s1, maandlast_hypotheek_s1, maandlast_duo_s1, extra_aflossing_hypotheek_s1
 )
