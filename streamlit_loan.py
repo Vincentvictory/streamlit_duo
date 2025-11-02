@@ -50,7 +50,7 @@ with col1:
     )
 with col2:
     extra_aflossing_hypotheek_s2 = st.number_input(
-        "Extra hypotheek aflossen Scenario 2 (€)", value=0, step=50
+        "Extra hypotheek aflossen Scenario 2 (€)", value=165, step=50
     )
 
 # --- Direct aflossen ---
@@ -161,3 +161,4 @@ df_s2 = pd.DataFrame({
 })
 st.header("Scenario 2: DUO niet direct aflossen")
 st.line_chart(df_s2.set_index("Jaren"))
+
