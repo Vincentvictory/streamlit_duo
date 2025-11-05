@@ -10,9 +10,9 @@ st.title("💡 DUO & Hypotheek")
 min_aflossing_duo = 50  # verplicht per maand
 max_duo_jaartijd = 35  # DUO wordt kwijtgescholden na 35 jaar
 
-schulden = np.array([48000, 45000, 40000, 35000, 30000, 25000, 20000, 15000, 10000])
-hypotheken_maandbedrag = np.array([651, 664, 686, 708, 729, 751, 773, 794, 816])
-max_hypotheek = np.array([144.782, 147.669, 152.490, 157.310, 162.109, 166.929, 171.750, 176.570, 181.368]) * 1000  # euro
+schulden = np.array([48000, 45000, 40000, 35000, 30000, 25000, 20000, 15000, 10000, 5000, 0])
+hypotheken_maandbedrag = np.array([651, 664, 686, 708, 729, 751, 773, 794, 816, 838, 859])
+max_hypotheek = np.array([144.782, 147.669, 152.490, 157.310, 162.109, 166.929, 171.750, 176.570, 181.368, 186.189, 191.009]) * 1000  # euro
 
 # --- Invoer ---
 st.sidebar.header("Invoer")
@@ -226,3 +226,4 @@ st.header("Scenario 1: DUO aflossen direct")
 st.line_chart(df_s1.set_index("Jaren"))
 st.header("Scenario 2: DUO niet direct aflossen")
 st.line_chart(df_s2.set_index("Jaren"))
+
