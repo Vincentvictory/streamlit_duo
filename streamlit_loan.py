@@ -176,7 +176,6 @@ def bereken_verloop_schulden(months, startschuld_duo, max_hypotheek, maand_hypot
     totale_schuld = duo_schuld_aflossen + hypotheek_aflossen
     totale_kosten = totale_betalingen.sum()
     totaal_maandbedragen = maandbedragen_totaal.sum()
-    st.write(totaal_maandbedragen)
 
     nul_index = np.argmax(totale_schuld <= 0)
     jaren_tot_nul = nul_index / 12 if nul_index > 0 else years
@@ -226,4 +225,5 @@ st.header("Scenario 1: DUO aflossen direct")
 st.line_chart(df_s1.set_index("Jaren"))
 st.header("Scenario 2: DUO niet direct aflossen")
 st.line_chart(df_s2.set_index("Jaren"))
+
 
